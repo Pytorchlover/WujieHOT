@@ -11,12 +11,12 @@
  * feedLabel 是分类 RSS 标题里的名字（不写就用 label）。公开接口、RSS 和 MCP 里要把一类并进另一类发布，写在站点设置里（site/site.ts 的 PUBLIC_CATEGORIES）。
  */
 export const CATEGORIES = [
-  { key: "ai-models", label: "模型", feedLabel: "AI 模型", section: "模型发布/更新", guide: "模型本身的发布、版本、权重开放、能力或价格变化，以及既有榜单上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
-  { key: "ai-products", label: "产品", feedLabel: "AI 产品", section: "产品发布/更新", guide: "可使用的 AI 产品、功能、应用、工具、API、平台和工程组件的发布更新。模型厂商发布的推理框架、算子库、硬件适配组件仍是产品，不能因为厂商名归成模型。" },
-  { key: "industry", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "已发生的公司经营、融资并购、人事、合作、诉讼、政策、真实安全事故及调查进展。新闻由当事人发帖、带有态度，也不因此变成观点。" },
-  { key: "paper", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新研究方法、实验设计与发现为核心的论文、技术报告、新基准或研究数据集。系统性红队实验属于研究；既有榜单成绩归模型，真实事故的新闻调查归行业。" },
-  { key: "tip", label: "教程", section: "技巧与观点", guide: "读者可以照着使用的方法、提示词、工具用法、工程实践复盘与技术讲解。重点是可复用的做法；单纯发布工具归产品，只有态度和预测而无做法归观点。", commentary: true },
-  { key: "opinion", label: "观点", section: "技巧与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
+  { key: "ai-models", label: "模型", feedLabel: "机器人模型", section: "模型发布/更新", guide: "机器人基础模型、VLA、世界模型本身的发布、版本、权重开放或能力变化，以及既有操作、导航、仿真基准上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
+  { key: "ai-products", label: "产品", feedLabel: "机器人系统", section: "产品发布/更新", guide: "可使用的机器人本体、仿真器、训练框架、数据集工具、遥操作或部署系统的发布更新。实验室发布的代码库、仿真环境、数据采集格式仍是产品，不能因为机构名归成模型。" },
+  { key: "industry", label: "行业", feedLabel: "产业动态", section: "行业动态", guide: "已发生的机器人公司经营、融资并购、人事、合作、量产交付、政策与真实部署进展。参会、参观、颁奖和没有技术内容的公关，不因公司名就当成产业节点。" },
+  { key: "paper", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新方法、实验、基准、数据集或系统发现为核心的论文和技术报告，包括模仿学习、强化学习、人类视频迁移、手部重建、灵巧操作和 sim2real。既有榜单成绩归模型，单纯解读已发表论文归教程。" },
+  { key: "tip", label: "教程", section: "技巧与观点", guide: "读者可以照着复现的训练、数据采集、仿真、遥操作或部署做法。重点是可复用的做法；单纯发布代码库归产品，只有态度和预测而无做法归观点。", commentary: true },
+  { key: "opinion", label: "观点", section: "技巧与观点", guide: "重点是作者对机器人学习、具身数据、人形路线或部署的解释、判断、主张或访谈。讨论融资不自动归行业，作者是研究员不自动归观点。", commentary: true },
 ] as const satisfies ReadonlyArray<{ key: string; label: string; feedLabel?: string; section: string; guide: string; commentary?: true }>;
 
 /**
@@ -27,7 +27,7 @@ export const CATEGORIES = [
 export const RELEASE: { category: string; tag: string; unit: string } | null = { category: "ai-models", tag: "模型发布", unit: "个新模型" };
 
 /** 周报月报的总述可以直接写、不必在报道里找到出处的行业通用词（小写）。站名会自动算进去。 */
-export const PLAIN_TERMS: readonly string[] = ["ai", "api", "llm", "gpu", "agi", "ceo", "ipo"];
+export const PLAIN_TERMS: readonly string[] = ["ai", "api", "llm", "gpu", "vla", "wam", "sim2real", "mano", "hoi", "il", "rl"];
 
 /**
  * 内容理解一步给每篇资料判的“内容类型”（写在 prompts/content-understanding.md 里，改了类型要同步改那份提示词）。
@@ -45,11 +45,14 @@ export const CATEGORY_TAGS = [
 
 /** 可选的主题标签。 */
 export const TOPIC_TAGS = [
-  "Agent", "编码", "推理", "多模态", "语音", "视频", "图像生成", "RAG", "端侧", "数据/训练", "搜索", "部署/工程", "开源生态", "具身智能", "MCP/工具调用",
+  "VLA", "世界模型", "机器人学习", "Ego数据", "人手与物体", "灵巧操作", "人形机器人", "Sim2Real", "仿真", "数据集", "遥操作", "真机部署",
 ] as const;
 
 /** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
+export const ENTITY_TAGS = [
+  "NVIDIA", "Physical Intelligence", "智元机器人", "宇树科技", "银河通用", "清华AIR",
+  "DeepMind", "Google", "Meta", "Hugging Face", "GitHub", "arXiv",
+] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
@@ -60,8 +63,14 @@ export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
   "open-source": "开源/仓库", 开源: "开源/仓库", 仓库: "开源/仓库", repo: "开源/仓库",
   教程: "教程/实践", 玩法: "教程/实践", 指南: "教程/实践", 技巧: "教程/实践", 最佳实践: "教程/实践", 实践: "教程/实践",
   产品: "产品更新", 更新: "产品更新", 发布: "模型发布", 模型: "模型发布", 趋势: "现象/趋势", 现象: "现象/趋势", 观点: "大佬观点",
-  视频生成: "视频", 非ai: "非AI/通用工具", "non-ai": "非AI/通用工具", 通用工具: "非AI/通用工具", 工程工具: "非AI/通用工具",
+  非ai: "非AI/通用工具", "non-ai": "非AI/通用工具", 通用工具: "非AI/通用工具", 工程工具: "非AI/通用工具",
   安全扫描: "非AI/通用工具", devops: "非AI/通用工具", 行业: "行业动态", 动态: "行业动态",
+  vla: "VLA", "视觉语言动作": "VLA", "世界模型": "世界模型", wam: "世界模型",
+  "模仿学习": "机器人学习", "强化学习": "机器人学习", "机器人学习": "机器人学习",
+  ego: "Ego数据", "第一人称": "Ego数据", hoi: "人手与物体", "手物交互": "人手与物体",
+  "灵巧手": "灵巧操作", dexterous: "灵巧操作", humanoid: "人形机器人", 人形: "人形机器人",
+  sim2real: "Sim2Real", "仿真到真实": "Sim2Real", 仿真器: "仿真", isaac: "仿真", mujoco: "仿真",
+  dataset: "数据集", 数据集: "数据集", 遥操作: "遥操作", teleop: "遥操作", 真机: "真机部署",
 };
 
 // ── 公司与主体 ──────────────────────────────────────────────────────────────────────────
@@ -90,6 +99,11 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
   "hugging-face": { name: "Hugging Face", displayTag: "Hugging Face", aliases: ["Hugging Face"], otherNames: ["HuggingFace"] },
   cursor: { name: "Cursor", displayTag: null, aliases: ["Cursor", "Anysphere"] },
   openrouter: { name: "OpenRouter", displayTag: null, aliases: ["OpenRouter"] },
+  "physical-intelligence": { name: "Physical Intelligence", displayTag: null, aliases: ["Physical Intelligence", "pi0"], otherNames: ["openpi"] },
+  agibot: { name: "智元机器人", displayTag: null, aliases: ["智元机器人", "AgiBot", "智元"], otherNames: ["AGIBOT"] },
+  galbot: { name: "银河通用", displayTag: null, aliases: ["银河通用", "Galbot"], otherNames: ["银河通用机器人"] },
+  unitree: { name: "宇树科技", displayTag: null, aliases: ["宇树科技", "Unitree", "宇树"], otherNames: ["Unitree Robotics"] },
+  "tsinghua-air": { name: "清华AIR", displayTag: null, aliases: ["清华AIR", "清华大学智能产业研究院"], otherNames: ["AIR"] },
 };
 
 /**

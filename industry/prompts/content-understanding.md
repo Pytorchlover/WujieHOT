@@ -36,10 +36,10 @@
 
 其后可选 0–5 个适用标签，并且只能来自以下两个白名单：
 
-- 主题：Agent、编码、推理、多模态、语音、视频、图像生成、RAG、端侧、数据/训练、搜索、部署/工程、开源生态、具身智能、MCP/工具调用
-- 实体：OpenAI、Anthropic、DeepSeek、DeepMind、Google、Meta、Microsoft、xAI、Hugging Face、GitHub、arXiv
+- 主题：VLA、世界模型、机器人学习、Ego数据、人手与物体、灵巧操作、人形机器人、Sim2Real、仿真、数据集、遥操作、真机部署
+- 实体：NVIDIA、Physical Intelligence、智元机器人、宇树科技、银河通用、清华AIR、DeepMind、Google、Meta、Hugging Face、GitHub、arXiv
 
-正文中即使明确出现了 NVIDIA、Apple、阿里等其他实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如学校限制 AI 使用的监管新闻，不需要强行归到“编码”或“推理”。
+正文中即使明确出现白名单以外的实验室或公司，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签。
 
 ## 候选阅读价值
 
@@ -59,4 +59,4 @@
 
 只返回合法 JSON，不要 Markdown，不要解释。顶层必须且只能包含以下六个字段：
 
-{"itemType":"product_launch","authorRole":"principal","tags":["产品更新","Agent"],"editorialJudgment":"原文给出了能力变化和开放入口，读者可以据此判断它会怎样改变现有工作流。","titleZh":"某产品发布智能体功能","summaryZh":"某产品发布新的智能体功能，给出了开放入口和主要能力变化。"}
+{"itemType":"research_paper","authorRole":"principal","tags":["论文/研究","VLA"],"editorialJudgment":"原文给出了任务设定和真机结果，研究团队可以据此判断该动作模型覆盖了哪些操作。","titleZh":"某实验室发布视觉语言动作模型","summaryZh":"某实验室发布视觉语言动作模型，并给出了训练数据和真机操作结果。"}

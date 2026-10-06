@@ -1,5 +1,5 @@
 
-【AI 领域翻译规则 — 本平台 100% 是 AI/ML/LLM 行业内容，严格遵守】
+【具身智能领域翻译规则 — 本平台以机器人学习、VLA、世界模型和真机系统为主，严格遵守】
 
 1. 歧义默认值：以下词在中文有非 AI 歧义，**一律按 AI 含义翻译**：
    - LLM = 大语言模型（绝不译"法学硕士"/"Master of Laws"）
@@ -25,9 +25,10 @@
      **规则**：任何大模型族名、产品代号一律保留英文
    - 模型版本号（举例 + 通用规则）：GPT-5 / Claude 4.7 / Claude Sonnet 4.6 / Llama 4 / Gemini 3 / o3 / o4 / DeepSeek-V4 / Qwen3.7
      **规则**：版本号一字不改（包括字母数字后缀如 4o / 4.7 / 405B / V4 / R1），绝不"翻译性扩写"（不要把 "405B" 译成 "4050 亿"，不要把 "V4" 译成 "第 4 代"）
-   - 技术缩写（举例 + 通用规则）：LLM / RAG / RLHF / DPO / LoRA / QLoRA / PEFT / MoE / CoT / ReAct / KV cache / SOTA / AGI / MCP / ADK / NPU / GPU / TPU
-     **规则**：任何 2-5 字母的全大写缩写，默认按 AI/ML 含义保留英文
-   - 评测基准（举例 + 通用规则）：MMLU / GPQA / HumanEval / SWE-bench / SWE-bench Verified / AIME / HLE / ARC-AGI / ARC-AGI 2 / MT-Bench / Chatbot Arena / Aider Polyglot / LiveCodeBench
+   - 技术缩写（举例 + 通用规则）：LLM / VLA / WAM / IL / RL / HOI / MANO / Sim2Real / RAG / RLHF / LoRA / MoE / CoT / SOTA / GPU / TPU
+     **规则**：任何 2-5 字母的全大写缩写，默认按机器人学习或机器学习含义保留英文
+   - 机器人学习专名保留英文：VLA / π0 / GR00T / Isaac / LeRobot / MuJoCo / MANO / Ego4D / Open X-Embodiment
+   - 评测基准（举例 + 通用规则）：LIBERO / CALVIN / SIMPLER / RLBench / RoboCasa / MMLU / HumanEval
      **规则**：以 -bench / -eval 结尾或全大写的评测名一律保留英文
    - AI 工具/产品：Cursor / Copilot / Codex / Aider / Devin / Cline / Claude Code / Windsurf / Zed / v0 / Bolt / Lovable / Replit Agent
    - Agent 框架：LangChain / LangGraph / LlamaIndex / CrewAI / AutoGen / Pydantic AI / Vercel AI SDK / DSPy
@@ -35,7 +36,8 @@
    - 通用技术：API / SDK / CLI / IDE / SaaS / CDN / SSO / OAuth / JWT / WebSocket / SSE / gRPC
 
 3. 中国厂商**优先用官方中文品牌名**（首次出现可双标"千问（Qwen3）"，后续选一种保持一致）：
-   - 千问（Qwen）/ 文心一言 / 智谱（GLM）/ 月之暗面（Kimi）/ 深度求索（DeepSeek）/ 阶跃星辰（Step）/ 零一万物（Yi）/ 百川 / 豆包（字节）/ 混元（腾讯）/ 可灵（Kling，快手）/ 即梦（Jimeng，字节）/ MiniMax（不译）/ 美团 LongCat / 昆仑万维 Skywork / 面壁 MiniCPM / 华为昇腾 / 寒武纪
+   - 智元机器人（AgiBot）/ 银河通用（Galbot）/ 宇树（Unitree）/ 清华 AIR
+   - 千问（Qwen）/ 深度求索（DeepSeek）/ 智谱（GLM）只在稿件确实讨论它们时保留，不要把机器人新闻改写成通用大模型新闻
 
 4. 代码 / 命令 / URL / 数字单位 **一字不改**保留：
    - 反引号代码 `code` 不翻译

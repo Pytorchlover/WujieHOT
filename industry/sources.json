@@ -1,368 +1,323 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。",
+  "$comment": "具身智能 / Robot Learning 监测信源。首次启动导入（scripts/seed.ts），已存在的不会被覆盖。字段说明见 docs/customize.md 与 docs/sources.md。",
   "sources": [
     {
-      "id": "rss-openai-news",
-      "name": "OpenAI News",
+      "id": "rss-arxiv-cs-ro",
+      "name": "arXiv cs.RO",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://openai.com/news/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "feedUrl": "https://export.arxiv.org/api/query?search_query=cat:cs.RO&sortBy=submittedDate&sortOrder=descending&max_results=20",
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": "openai",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "interval_minutes": 180,
+      "tags": ["论文", "研究"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-google-deepmind",
-      "name": "Google DeepMind",
+      "id": "rss-nvidia-robotics",
+      "name": "NVIDIA Technical Blog · Robotics",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-google-research",
-      "name": "Google Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://research.google/blog/rss/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-hugging-face",
-      "name": "Hugging Face Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://huggingface.co/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "hugging-face",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "开源"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-microsoft-research",
-      "name": "Microsoft Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.microsoft.com/en-us/research/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "microsoft",
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-nvidia-blog",
-      "name": "NVIDIA Blog",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://blogs.nvidia.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "feedUrl": "https://developer.nvidia.com/blog/category/robotics/feed/",
+        "publisherUrlPrefixes": ["https://developer.nvidia.com/blog/"],
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
       "owner_entity_id": "nvidia",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["官方", "研究"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-aws-ml",
-      "name": "AWS Machine Learning Blog",
+      "id": "rss-mit-robotics",
+      "name": "MIT News · Robotics",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "feedUrl": "https://news.mit.edu/topic/mitrobotics-rss.xml",
+        "publisherUrlPrefixes": ["https://news.mit.edu/"],
+        "_aihot": { "initialBackfillLimit": 8 }
       },
       "tier": "T1",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "教程"
-      ],
+      "interval_minutes": 240,
+      "tags": ["研究"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-github-ai",
-      "name": "GitHub Blog · AI & ML",
-      "kind": "rss",
+      "id": "web-agibot-news",
+      "name": "智元机器人 News",
+      "kind": "web_list",
       "config": {
-        "feedUrl": "https://github.blog/ai-and-ml/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "url": "https://www.agibot.com/news",
+        "parseMode": "html",
+        "itemSelector": "a[href*='/article/']",
+        "titleSelector": "h5.line3",
+        "publishedAtSelector": "div.time",
+        "allowUrlPrefixes": ["https://www.agibot.com/article/"],
+        "publisherUrlPrefixes": ["https://www.agibot.com/article/"],
+        "ingestNoiseFilter": { "dropMarkersTitleOnly": ["参观", "打卡", "领导"] },
+        "_aihot": { "initialBackfillLimit": 10 }
       },
       "tier": "T1",
-      "owner_entity_id": null,
+      "owner_entity_id": "agibot",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": ["官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-galbot-news",
+      "name": "银河通用 News",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.galbot.com/news/",
+        "parseMode": "html",
+        "itemSelector": "a.news-card, a.featured-link",
+        "titleSelector": "h3.card-h, h2, h3",
+        "publishedAtSelector": "span.date",
+        "ingestNoiseFilter": { "dropMarkersTitleOnly": ["参观", "打卡", "领导"] },
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "galbot",
+      "participation_mode": "editorial",
+      "interval_minutes": 240,
+      "tags": ["官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-unitree-news",
+      "name": "宇树科技 News",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.unitree.com/news/",
+        "parseMode": "html",
+        "itemSelector": "ul.news-list > li",
+        "linkSelector": "a.link",
+        "titleSelector": "p.title",
+        "publishedAtSelector": "p.date",
+        "allowUrlPrefixes": ["https://www.unitree.com/news/"],
+        "publisherUrlPrefixes": ["https://www.unitree.com/news/"],
+        "ingestNoiseFilter": {
+          "dropMarkersTitleOnly": ["president", "graces the cover", "kung fu", "参观", "到访", "拜访"],
+          "keepIfMatches": ["gr00t", "isaac", "dataset", "open-source", "开源", "模型"]
+        },
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "unitree",
+      "participation_mode": "editorial",
+      "interval_minutes": 240,
+      "tags": ["官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-air-news",
+      "name": "清华 AIR 新闻",
+      "kind": "web_list",
+      "config": {
+        "url": "https://air.tsinghua.edu.cn/lby.jsp?urltype=tree.TreeTempUrl&wbtreeid=1007&order=1",
+        "baseUrl": "https://air.tsinghua.edu.cn/",
+        "parseMode": "html",
+        "itemSelector": "a[href*='info/']",
+        "titleSelector": "h3, h2",
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtRegex": "发布时间：(\\d{4}-\\d{2}-\\d{2})"
+        },
+        "allowUrlPrefixes": ["https://air.tsinghua.edu.cn/info/"],
+        "publisherUrlPrefixes": ["https://air.tsinghua.edu.cn/info/"],
+        "ingestNoiseFilter": { "dropMarkersTitleOnly": ["招聘", "人物", "博士后", "实习生", "医院", "医疗", "hospital", "捐赠"] },
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1",
+      "owner_entity_id": "tsinghua-air",
+      "participation_mode": "editorial",
+      "interval_minutes": 240,
+      "tags": ["研究"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-gh-openpi",
+      "name": "GitHub · Physical Intelligence openpi",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://github.com/Physical-Intelligence/openpi/releases.atom",
+        "publisherRole": "organization",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "physical-intelligence",
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["开源", "官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-gh-lerobot",
+      "name": "GitHub · Hugging Face LeRobot",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://github.com/huggingface/lerobot/releases.atom",
+        "publisherRole": "organization",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "hugging-face",
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["开源", "官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-gh-isaac-gr00t",
+      "name": "GitHub · NVIDIA Isaac GR00T",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://github.com/NVIDIA/Isaac-GR00T/releases.atom",
+        "publisherRole": "organization",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "nvidia",
+      "participation_mode": "editorial",
+      "interval_minutes": 90,
+      "tags": ["开源", "官方"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-gh-isaac-lab",
+      "name": "GitHub · NVIDIA Isaac Lab",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://github.com/isaac-sim/IsaacLab/releases.atom",
+        "publisherRole": "organization",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T1_5",
+      "owner_entity_id": "nvidia",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["开源", "仿真"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-mistral",
-      "name": "Mistral AI",
+      "id": "rss-gh-mujoco",
+      "name": "GitHub · Google DeepMind MuJoCo",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://mistral.ai/news/rss",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "feedUrl": "https://github.com/google-deepmind/mujoco/releases.atom",
+        "publisherRole": "organization",
+        "_aihot": { "initialBackfillLimit": 8 }
       },
-      "tier": "T1",
-      "owner_entity_id": null,
+      "tier": "T1_5",
+      "owner_entity_id": "google",
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "tags": ["开源", "仿真"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-bair",
-      "name": "Berkeley AI Research",
+      "id": "rss-ieee-robotics",
+      "name": "IEEE Spectrum · Robotics",
       "kind": "rss",
       "config": {
-        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
+        "feedUrl": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+        "_aihot": { "initialBackfillLimit": 8 }
       },
-      "tier": "T1",
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "hot_signal",
+      "interval_minutes": 120,
+      "tags": ["媒体"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-techcrunch-robotics",
+      "name": "TechCrunch · Robotics",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://techcrunch.com/tag/robotics/feed/",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "hot_signal",
+      "interval_minutes": 120,
+      "tags": ["媒体"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-qbitai",
+      "name": "量子位",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.qbitai.com/feed",
+        "_aihot": { "initialBackfillLimit": 8 }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "hot_signal",
+      "interval_minutes": 180,
+      "tags": ["媒体"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "ext-mp-jushen-zhixin",
+      "name": "具身智能之心",
+      "kind": "external",
+      "config": {},
+      "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "研究"
-      ],
+      "tags": ["媒体", "公众号"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-the-verge-ai",
-      "name": "The Verge · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-techcrunch-ai",
-      "name": "TechCrunch · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://techcrunch.com/category/artificial-intelligence/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-ars-technica-ai",
-      "name": "Ars Technica · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://arstechnica.com/ai/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-mit-tech-review-ai",
-      "name": "MIT Technology Review · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-the-decoder",
-      "name": "The Decoder",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://the-decoder.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-simon-willison",
-      "name": "Simon Willison",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://simonwillison.net/atom/everything/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "个人"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-import-ai",
-      "name": "Import AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://importai.substack.com/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "ext-mp-jushen-jiyuan",
+      "name": "具身纪元",
+      "kind": "external",
+      "config": {},
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "个人",
-        "周刊"
-      ],
+      "tags": ["媒体", "公众号"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-latent-space",
-      "name": "Latent Space",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.latent.space/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "ext-mp-tiannan",
+      "name": "天南具身公园",
+      "kind": "external",
+      "config": {},
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "个人"
-      ],
+      "tags": ["媒体", "公众号"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     }

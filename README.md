@@ -14,8 +14,9 @@
 </p>
 
 <p align="center">
-  <b>一个自己找热点、自己写日报的网站框架。</b><br>
-  把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。
+  <b>WujieHOT：具身智能与机器人学习热点站。</b><br>
+  站名和文案在 <code>site/site.ts</code>。引擎来自开源框架 <a href="https://github.com/KKKKhazix/AIHOT">AIHOT</a>。<br>
+  微信公众号不直接抓，通过第三方仓库 <a href="https://github.com/565800105/zlzchat">zlzchat</a> 订阅，说明在 <a href="integrations/wechat-rss/README.md">integrations/wechat-rss</a>。
 </p>
 
 <p align="center">

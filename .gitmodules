@@ -1,0 +1,3 @@
+[submodule "third_party/zlzchat"]
+	path = third_party/zlzchat
+	url = git@github.com:565800105/zlzchat.git
